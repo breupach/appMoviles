@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Hola mundo</title>
-</head>
-<body>
-	<h1>Hola mundo</h1>
-	<p>prueba</p>
-</body>
+  <head>
+    <title>Hola mundo</title>
+  </head>
+  <body>
+    <h1>Hola mundo</h1>
+    <p>prueba</p>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        getCategory();
+        getSubCategory(677);
+        getCustom("id", 589);
+        getCustomParams([
+          { key: "category", value: "libros_programacion" },
+          { key: "criteria", value: "most_viewed" },
+        ]);
+      });
+    </script>
+  </body>
 </html>
