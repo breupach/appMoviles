@@ -24,19 +24,47 @@
             </div>
         </nav>
 
-        <section class="container-contact flex-row">
-            <div class="contact space-around flex-column">
-                <h3>Contacto</h3>
-                <h4><a class="link-contact" href="https://breupach.github.io/appMoviles/">Pagina web</a></h4>
-                <p>Teléfono: 0221 423-3931</p>
-                <p>Dirección: Calle 14, B1900 La Plata, Buenos Aires</p>
+        <form class="form flex-column">
+            <div class="container-form flex-row">
+                <div class="container-share flex-column border-right">
+                    <h2 class="title-form left">Datos de envio</h2>
+                    <div class="detail-share flex-row space-between">
+                        <label>Emisor:</label>
+                        <input class="input-share" type="email" name="emisor" placeholder="Ingrese su e-mail"/>
+                    </div>
+                    <div class="detail-share flex-row space-between">
+                        <label>Receptor:</label>
+                        <input class="input-share" type="email" name="receptor" placeholder="Ingrese el e-mail destino"/>
+                    </div>
+                </div>
+                <div class="container-share flex-column border-left">
+                    <h2 class="title-form right">Datos de artículo</h2>
+                    <div class="detail-share flex-row space-between">
+                      <label>Título:</label>
+                      <input class="input-share" type="text" name="titulo" disabled/>
+                    </div>
+                    <div class="detail-share flex-row space-between">
+                      <label>Autor:</label>
+                      <input class="input-share" type="text" name="autor" disabled/>
+                    </div>
+                </div>
             </div>
-           <div class="map"><iframe class="iframe-map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13085.388732687137!2d-57.9562555!3d-34.9228288!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8e5a62b28764b5ef!2sCatedral%20de%20La%20Plata!5e0!3m2!1sen!2sar!4v1620597154751!5m2!1sen!2sar" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-        </section>
+            <div class="container-form flex-column">
+                <label>Mensaje:</label>
+                <textarea class="msj" placeholder="Escriba su mensaje"></textarea>
+            </div>
+            <div class="container-btn flex-row">
+                <button class="btn send">Enviar</button>
+                <div class="justify-center">
+                    <img class="photo-rabit" src="./statics/images/conejoPC.png" alt="conejo con PC">
+                </div>
+                <button class="btn cancel">Cancelar</button>
+            </div>
+        </form>
 
-        <footer class="footer footer-fixed view-padding flex-row text-white space-between">
+        <footer class="footer view-padding flex-row text-white space-between">
             <div class="text-footer font-roboto">Copyright ©</div>
-            <div class="container-icono-footer space-between container-icono-padding">
+            <div class="container-icono-footer space-between">
                 <a class="icono-footer" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-instagram text-white"></i>
                 </a>
