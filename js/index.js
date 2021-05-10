@@ -22,9 +22,7 @@ function getCustomParams(params) {
   params.forEach((p) => (customUrl += `${p.key}=${p.value}&`));
   // se remueve el último & concatenado en el forEach
   customUrl = customUrl.slice(0, -1);
-<<<<<<< HEAD
-  $.getJSON(`${URL}/?${customUrl}`, (results) => console.log(results));
-=======
+
   $.getJSON(`${URL}/?${customUrl}`, (results) => {
     cargarProductos(results);
     results.forEach((product) => {
@@ -81,5 +79,4 @@ function cargarProductoDetalle() {
     <p class="info-product font-roboto">${producto.content}</p>
     <button class="btn-add font-roboto text-white">Agregar al carrito</button>
   </div>`).appendTo(document.getElementById("section-product"));
->>>>>>> f8bda0263daee7ff8bd39da2da854f3104b7ade1
 }
