@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+  <head>
+    <title>Libreria</title>
+    <link rel="icon" type="image/x-icon" href="./statics/images/logo-libreria.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://kit.fontawesome.com/1ed068a928.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./statics/css/style.css">
+  </head>
+
+  <body>
+        <header class="header view-padding flex-row space-between">
+            <div class="container-logo">
+               <a href="./index.html"><img class="logo" src="./statics/images/logo-libreria.png" alt="logo"></a> 
+            </div>
+            <h1 class="principal-text font-roboto text-white">Librería @</h1>
+        </header>
+
+        <nav class="nav view-padding flex-row space-between">
+            <div class="container-text-nav flex-row space-between">
+                <h2 class="font-roboto secundary-text"> <a class="link-nav text-white" href="./index.html">Inicio</a></h2>
+                <h2 class="font-roboto secundary-text text-white"><a class="link-nav text-white" href="./contacto.html">Contacto</a></h2>
+                <h2 class="font-roboto secundary-text text-white"><a class="link-nav text-white" href="./historial.html">Historial</a></h2>
+            </div>
+            <div class="flex-row container-shopping-cart">
+                <i class="fas fa-shopping-cart text-white"></i>
+                <div class="flex-column text-shopping-cart text-white">
+                    <div>Cantidad: <span id="total_items">0</span></div>
+                    <div>$ <span id="total_price">0</span></div>
+                </div>
+            </div>
+
+        </nav>
+
+        <section class="container-info-book flex-row" id="section-product">
+        </section>
+
+        <footer class="footer footer-fixed view-padding flex-row text-white space-between">
+            <div class="text-footer font-roboto">Copyright ©</div>
+            <div class="container-icono-footer space-between container-icono-padding">
+                <a class="icono-footer" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram text-white"></i>
+                </a>
+                <a class="icono-footer" href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter text-white"></i>
+                </a>
+                <a class="icono-footer" href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-facebook text-white"></i>
+                </a>
+                <a class="icono-footer" href="https://telegram.org/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-telegram-plane text-white"></i>
+                </a>
+            </div>
+        </footer>
+        <script src="./js/jquery-3.6.0.min.js"></script>
+        <script src="./js/index.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                cargarProductoDetalle();
+            })
+        </script>
+  </body>
+</html>
