@@ -130,6 +130,10 @@ textarea:focus-visible{
 
 .view{
     color: rgb(206,20,90);
+    color: rgb(206,20,90);
+    border: none;
+    width: 100%;
+    background: none;
 }
 
 .container-view,
@@ -168,13 +172,13 @@ textarea:focus-visible{
 .section-book{
     padding: 0 1% 2% 1%;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .container-product{
     align-items: center;
     height: 350px;
     width: 200px;
-    /* border: 0.1px solid rgb(3,45,84); */
     border-radius: 5px;
     margin: 4% 2.5% 3% 1%;
 }
@@ -207,6 +211,8 @@ textarea:focus-visible{
 .info-product{
     color: rgb(3,45,84);
     font-size: 16px;
+    margin: 2% 0;
+    text-align: justify;
 }
 
 .footer{
@@ -236,6 +242,11 @@ textarea:focus-visible{
 
 .icono-footer:hover {
     transform: scale(2, 2);
+}
+
+.icono-footer{
+    display: flex;
+    justify-content: center;
 }
 
 .container-contact{
@@ -269,7 +280,6 @@ textarea:focus-visible{
 
 .container-info-book {
     padding: 3% 8%;
-    height: 500px;
 }
 
 .container-photo-book{
@@ -287,6 +297,7 @@ textarea:focus-visible{
 
 .detail-book{
     padding: 0 4%;
+    flex: 3;
 }
 
 .publicity{
@@ -453,10 +464,10 @@ form{
 
     .footer-fixed{
         position: relative;
+        width: auto;
     }
 
     .container-info-book{
-        height: auto;
         flex-direction: column;
         align-items: center;
     }
