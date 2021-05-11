@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <header class="header view-padding flex-row space-between">
+    <header class="header view-padding flex-row space-between align-center">
       <div class="container-logo">
         <a href="./index.html"
           ><img
@@ -29,7 +29,7 @@
       <h1 class="principal-text font-roboto text-white">Librería @</h1>
     </header>
 
-    <nav class="nav view-padding flex-row space-around">
+    <nav class="nav view-padding flex-column space-around align-center">
       <div class="container-text-nav flex-row space-between">
         <h2 class="font-roboto secundary-text">
           <a class="link-nav text-white" href="./index.html">Inicio</a>
@@ -41,14 +41,14 @@
           <a class="link-nav text-white" href="./historial.html">Historial</a>
         </h2>
       </div>
-      <div class="container-input space-around">
+      <div class="container-input space-between flex-column align-center">
         <input class="search" type="search" placeholder="Autor" />
-        <input class="search" type="search" placeholder="Categoría" />
+        <input class="search search-middle" type="search" placeholder="Categoría" />
         <input class="search" type="search" placeholder="Idioma" />
       </div>
 
       <div class="flex-row container-shopping-cart">
-        <i class="fas fa-shopping-cart text-white"></i>
+        <i class="fas fa-shopping-cart text-white align-center"></i>
         <div class="flex-column text-shopping-cart text-white">
           <div>Cantidad: <span id="total_items">0</span></div>
           <div>$ <span id="total_price">0</span></div>
@@ -66,12 +66,20 @@
           />
         </div>
       </aside>
-      <div class="section-book flex-row" id="section-product"></div>
+      <div class="section-book flex-column align-center" id="section-product"></div>
+    </section > 
+     
+    <section class="pagination flex-row">
+      <a class="page box-shadow text-blue" href="#"><<</a>
+      <a class="page box-shadow text-blue" href="#">1</a>
+      <a class="page box-shadow text-blue" href="#">2</a>
+      <a class="page box-shadow text-blue" href="#">3</a>
+      <a class="page box-shadow text-blue" href="#">>></a>
     </section>
 
-    <footer class="footer view-padding flex-row text-white space-between">
-      <div class="text-footer font-roboto">Copyright ©</div>
-      <div class="container-icono-footer space-between">
+    <footer class="footer view-padding flex-column text-white align-center">
+      <div class="font-roboto align-center">Aplicaciones Móviles: Trabajo Integrador</div>
+      <div class="container-icono-footer space-between align-center">
         <a
           class="icono-footer"
           href="https://www.instagram.com/"
