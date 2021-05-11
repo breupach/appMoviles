@@ -31,7 +31,7 @@ function getCustomParams(params) {
 }
 
 function cargarProductos(productos) {
-  sessionStorage.setItem("productos", JSON.stringify(productos));
+  localStorage.setItem("productos", JSON.stringify(productos));
 }
 
 function crearProduct(product) {
@@ -54,14 +54,14 @@ function crearProduct(product) {
 }
 
 function irDetalle(idProducto) {
-  let productos = JSON.parse(sessionStorage.getItem("productos"));
+  let productos = JSON.parse(localStorage.getItem("productos"));
   const producto = productos.filter((p) => p.ID === idProducto)[0];
-  sessionStorage.setItem("producto", JSON.stringify(producto));
+  localStorage.setItem("producto", JSON.stringify(producto));
   location.href = location.origin + "/product.html";
 }
 
 function cargarProductoDetalle() {
-  const producto = JSON.parse(sessionStorage.getItem("producto"));
+  const producto = JSON.parse(localStorage.getItem("producto"));
   console.log(producto);
   let categorias = [];
   producto.categories.forEach((category) => categorias.push(category.name));
