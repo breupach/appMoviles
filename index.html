@@ -1,129 +1,142 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Libreria</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="./statics/images/logo-libreria.png"
-    />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script
-      src="https://kit.fontawesome.com/1ed068a928.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="./statics/css/style.css" />
-  </head>
+	<head>
+		<title>Libreria</title>
+		<link rel="icon" type="image/x-icon" href="./statics/images/logo-libreria.png" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://kit.fontawesome.com/1ed068a928.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="./statics/css/style.css" />
+	</head>
 
-  <body>
-    <header class="header view-padding flex-row space-between align-center">
-      <div class="container-logo">
-        <a href="./index.html"
-          ><img
-            class="logo"
-            src="./statics/images/logo-libreria.png"
-            alt="logo"
-        /></a>
-      </div>
-      <h1 class="principal-text font-roboto text-white">Librería @</h1>
-    </header>
+	<body>
+		<header class="header view-padding flex-row space-between align-center">
+			<div class="container-logo">
+				<a href="./index.html"
+					><img class="logo" src="./statics/images/logo-libreria.png" alt="logo"
+				/></a>
+			</div>
+			<h1 class="principal-text font-roboto text-white">Librería @</h1>
+		</header>
 
-    <nav class="nav view-padding flex-column space-around align-center">
-      <div class="container-text-nav flex-row space-between">
-        <h2 class="font-roboto secundary-text">
-          <a class="link-nav text-white" href="./index.html">Inicio</a>
-        </h2>
-        <h2 class="font-roboto secundary-text text-white">
-          <a class="link-nav text-white" href="./contacto.html">Contacto</a>
-        </h2>
-        <h2 class="font-roboto secundary-text text-white">
-          <a class="link-nav text-white" href="./historial.html">Historial</a>
-        </h2>
-      </div>
-      <div class="container-input space-between flex-column align-center">
-        <input class="search" type="search" placeholder="Autor" />
-        <input class="search search-middle" type="search" placeholder="Categoría" />
-        <input class="search" type="search" placeholder="Idioma" />
-      </div>
+		<nav class="nav view-padding flex-column space-around align-center">
+			<div class="container-text-nav flex-row space-between">
+				<h2 class="font-roboto secundary-text">
+					<a class="link-nav text-white" href="./index.html">Inicio</a>
+				</h2>
+				<h2 class="font-roboto secundary-text text-white">
+					<a class="link-nav text-white" href="./contacto.html">Contacto</a>
+				</h2>
+				<h2 class="font-roboto secundary-text text-white">
+					<a class="link-nav text-white" href="./historial.html">Historial</a>
+				</h2>
+			</div>
+			<form
+				onsubmit="buscar(event, this);"
+				class="container-input space-between flex-column align-center"
+			>
+				<input class="search" type="text" id="title" name="book_title" placeholder="Título" />
+				<input class="search" type="text" id="author" name="book_author" placeholder="Autor" />
 
-      <div class="flex-row container-shopping-cart">
-        <i class="fas fa-shopping-cart text-white align-center"></i>
-        <div class="flex-column text-shopping-cart text-white">
-          <div>Cantidad: <span id="total_items">0</span></div>
-          <div>$ <span id="total_price">0</span></div>
-        </div>
-      </div>
-    </nav>
+				<select class="search search-middle" id="search__categorias" name="category_id">
+					<option value="NINGUNO">Sellecciona una categoría</option>
+				</select>
 
-    <section class="flex-column">
-      <aside>
-        <div class="publicity space-around flex-row">
-          <img
-            class="photo-publicity"
-            src="./statics/images/banner.png"
-            alt="publicidad"
-          />
-        </div>
-      </aside>
-      <div class="section-book flex-column align-center" id="section-product"></div>
-    </section > 
-     
-    <section class="pagination flex-row">
-      <a class="page box-shadow text-blue" href="#"><<</a>
-      <a class="page box-shadow text-blue" href="#">1</a>
-      <a class="page box-shadow text-blue" href="#">2</a>
-      <a class="page box-shadow text-blue" href="#">3</a>
-      <a class="page box-shadow text-blue" href="#">>></a>
-    </section>
+				<select
+					class="search search-middle"
+					id="search__subcategorias"
+					name="subcategory_id"
+					hidden
+				>
+					<option value="NINGUNO">Sellecciona una sub categoría</option>
+				</select>
 
-    <footer class="footer view-padding flex-column text-white align-center">
-      <div class="font-roboto align-center">Aplicaciones Móviles: Trabajo Integrador</div>
-      <div class="container-icono-footer space-between align-center">
-        <a
-          class="icono-footer"
-          href="https://www.instagram.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="fab fa-instagram text-white"></i>
-        </a>
-        <a
-          class="icono-footer"
-          href="https://twitter.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="fab fa-twitter text-white"></i>
-        </a>
-        <a
-          class="icono-footer"
-          href="https://facebook.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="fab fa-facebook text-white"></i>
-        </a>
-        <a
-          class="icono-footer"
-          href="https://telegram.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i class="fab fa-telegram-plane text-white"></i>
-        </a>
-      </div>
-    </footer>
+				<select class="search search-middle" id="limite" onchange="cambiarLimite(event)">
+					<option value="10">10</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
 
-    <script src="./statics/js/jquery-3.6.0.min.js"></script>
-    <script src="./statics/js/index.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        getCustomParams([
-          { key: "category", value: "libros_programacion" },
-          { key: "criteria", value: "most_viewed" },
-        ]);
-      });
-    </script>
-  </body>
+				<button class="" type="submit">Buscar</button>
+				<button class="" type="button">Limpiar</button>
+			</form>
+
+			<div class="flex-row container-shopping-cart">
+				<i class="fas fa-shopping-cart text-white align-center"></i>
+				<div class="flex-column text-shopping-cart text-white">
+					<div>Cantidad: <span id="total_items">0</span></div>
+					<div>$ <span id="total_price">0</span></div>
+				</div>
+			</div>
+		</nav>
+
+		<section class="flex-column">
+			<aside>
+				<div class="publicity space-around flex-row">
+					<img class="photo-publicity" src="./statics/images/banner.png" alt="publicidad" />
+				</div>
+			</aside>
+			<div class="section-book flex-column align-center" id="section-product"></div>
+		</section>
+
+		<section class="pagination flex-row" id="section-pagination"></section>
+
+		<footer class="footer view-padding flex-column text-white align-center">
+			<div class="font-roboto align-center">Aplicaciones Móviles: Trabajo Integrador</div>
+			<div class="container-icono-footer space-between align-center">
+				<a
+					class="icono-footer"
+					href="https://www.instagram.com/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="fab fa-instagram text-white"></i>
+				</a>
+				<a
+					class="icono-footer"
+					href="https://twitter.com"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="fab fa-twitter text-white"></i>
+				</a>
+				<a
+					class="icono-footer"
+					href="https://facebook.com"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="fab fa-facebook text-white"></i>
+				</a>
+				<a
+					class="icono-footer"
+					href="https://telegram.org/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="fab fa-telegram-plane text-white"></i>
+				</a>
+			</div>
+		</footer>
+
+		<script src="./statics/js/jquery-3.6.0.min.js"></script>
+		<script src="./statics/js/index.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				getCustomParams([
+					{ key: "category", value: "libros_programacion" },
+					{ key: "criteria", value: "most_viewed" },
+				]);
+
+				cargarCategoriasSelect("search__categorias");
+				document.getElementById("search__categorias").addEventListener("change", function () {
+					cargarSubCategoriasSelect(
+						document.getElementById("search__categorias").value,
+						"search__subcategorias"
+					);
+				});
+			});
+		</script>
+	</body>
 </html>
