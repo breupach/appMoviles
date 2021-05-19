@@ -1,7 +1,7 @@
 const URL = "https://www.etnassoft.com/api/v1/get";
 let limite = 10;
-let numDevuelto = 0;
-let numPaginas = 0;
+let totalPaginas = 0;
+const ulTag = document.getElementById("ulPagination");
 let lastGet = "";
 
 function cambiarLimite(event) {
@@ -25,9 +25,12 @@ function getCustomParams(params) {
 
 	//contar cantidad para paginacion
 	$.getJSON(`${URL}/?${customUrl}&count_items=true`, (num) => {
-		numDevuelto = num;
-		numPaginas = Math.ceil(num?.num_items / limite);
-		cargasNumPaginas(numPaginas);
+		totalPaginas = Math.ceil(num?.num_items / limite);
+		if (totalPaginas > 1) {
+			cargarPaginacion(totalPaginas, 1);
+		} else {
+			ulTag.innerHTML = "";
+		}
 	});
 
 	//obtener libros por filtro
@@ -40,26 +43,67 @@ function getCustomParams(params) {
 	});
 }
 
-function cargasNumPaginas(numPaginas) {
-	document.getElementById("section-pagination").innerHTML = "";
-	if (numPaginas > 0) {
-		$(`
-    <button class="page box-shadow text-blue" type="button"><<</button>
-    ${forPaginas(numPaginas)}
-    <button class="page box-shadow text-blue" type="button">>></button>
-    
-    `).appendTo(document.getElementById("section-pagination"));
+function cargarPaginacion(totalPaginas, page) {
+	let liTag = "";
+	let beforePages = page - 1;
+	let afterPages = page + 1;
+	if (page > 1) {
+		liTag += `<li class="btn-pag prev" onclick="cargarPaginacion(totalPaginas, ${
+			page - 1
+		});getWithPagination(${page - 1})">
+					<span><i class="fas fa-angle-left"></i> Anterior</span>
+				</li>`;
 	}
-}
 
-function forPaginas(numPaginas) {
-	paginas = "";
-	for (let num = 1; num <= numPaginas; num++) {
-		paginas += `<button class="page box-shadow text-blue" onclick="getWithPagination(${
-			num - 1
-		})" type="button">${num}</button>`;
+	if (page > 2) {
+		liTag += `<li class="numb" onclick="cargarPaginacion(totalPaginas, 1);getWithPagination(1)"><span>1</span></li>`;
+		if (page > 3) {
+			liTag += `<li class="dots"><span>...</span></li>`;
+		}
 	}
-	return paginas;
+
+	if (page === 1) {
+		afterPages = afterPages + 2;
+	} else if (page === 2) {
+		afterPages = afterPages + 1;
+	}
+
+	if (page === totalPaginas) {
+		beforePages = beforePages - 2;
+	} else if (page === totalPaginas - 1) {
+		beforePages = beforePages - 1;
+	}
+
+	for (let pageLength = beforePages; pageLength <= afterPages; pageLength++) {
+		if (pageLength >= totalPaginas) {
+			continue;
+		}
+		if (pageLength === 0) {
+			pageLength = pageLength + 1;
+		}
+
+		liTag += `<li class="numb ${
+			page === pageLength ? "active" : ""
+		}" onclick="cargarPaginacion(totalPaginas, ${pageLength});getWithPagination(${pageLength})"><span>${pageLength}</span></li>`;
+	}
+
+	if (page < totalPaginas - 2) {
+		if (page < totalPaginas - 3) {
+			liTag += `<li class="dots"><span>...</span></li>`;
+		}
+		liTag += `<li class="numb" onclick="cargarPaginacion(totalPaginas, ${
+			totalPaginas - 1
+		});getWithPagination(${totalPaginas - 1})"><span>${totalPaginas - 1}</span></li>`;
+	}
+
+	if (page < totalPaginas - 1) {
+		liTag += `<li class="btn-pag next" onclick="cargarPaginacion(totalPaginas, ${
+			page + 1
+		});getWithPagination(${page + 1})">
+                    <span>Siguiente <i class="fas fa-angle-right"></i></span>
+                </li>`;
+	}
+	ulTag.innerHTML = liTag;
 }
 
 function getWithPagination(numPagina) {
@@ -74,34 +118,35 @@ function getWithPagination(numPagina) {
 }
 
 function crearProduct(product) {
+	let tituloRecortado = product.title.slice(0, 74);
+
 	$(`<div class='container-product flex-column space-between box-shadow align-center'>
   <div class='container-image-product'>
       <img class='product' src='${product.thumbnail}' alt='producto'>
   </div>
   <div class="detail-info-book flex-column space-between">
-    <h2 class='detail-product font-roboto text-blue'>Título del Libro: ${product.title}</h2>
+    <h2 class='detail-product font-roboto text-blue'>Título del Libro: ${tituloRecortado}</h2>
     <h2 class='detail-product font-roboto text-blue'>Autor: ${product.author}</h2>
-    <h2 class='detail-product font-roboto text-blue'>Precio:</h2>
+    <h2 class='detail-product font-roboto text-blue'>Precio: $ ${product.pages}</h2>
   </div>
   <div class='view-more flex-row space-around align-center'>
-      <h2 class='more-info'><a class='share align-center text-blue' href='./share.html'>Compartir</a></h2>
+      <h2 class='more-info'><button class='share align-center text-blue' onclick='saltoPagina("/share.html","${product.ID}")'>Compartir</button></h2>
       <span>|</span>
-      <h2 class='container-view'><button class='view align-center' onclick='irDetalle("${product.ID}")'>Ver +</button></h2>
+      <h2 class='container-view'><button class='view align-center' onclick='saltoPagina("/product.html","${product.ID}")'>Ver +</button></h2>
   </div>
   <button class='btn-add font-roboto text-white'>Agregar al carrito</button>
 </div>`).appendTo(document.getElementById("section-product"));
 }
 
-function irDetalle(idProducto) {
+function saltoPagina(destino, idProducto) {
 	let productos = JSON.parse(localStorage.getItem("productos"));
 	const producto = productos.filter((p) => p.ID === idProducto)[0];
 	localStorage.setItem("producto", JSON.stringify(producto));
-	location.href = location.origin + "/product.html";
+	location.href = location.origin + destino;
 }
 
 function cargarProductoDetalle() {
 	const producto = JSON.parse(localStorage.getItem("producto"));
-	console.log(producto);
 	let categorias = [];
 	producto.categories.forEach((category) => categorias.push(category.name));
 	categorias = categorias.join(" - ");
@@ -119,6 +164,12 @@ function cargarProductoDetalle() {
     <p class="info-product font-roboto text-blue">${producto.content}</p>
     <button class="btn-add font-roboto text-white">Agregar al carrito</button>
   </div>`).appendTo(document.getElementById("section-product"));
+}
+
+function cargarProductoCompartir() {
+	const producto = JSON.parse(localStorage.getItem("producto"));
+	document.getElementById("titulo").value = producto.title;
+	document.getElementById("autor").value = producto.author;
 }
 
 function crearOption(category, idSelect) {
@@ -182,5 +233,11 @@ function buscar(event, bindForm) {
 		  })
 		: "";
 
+	if (params.length === 0) {
+		params = [
+			{ key: "category", value: "libros_programacion" },
+			{ key: "criteria", value: "most_vied" },
+		];
+	}
 	getCustomParams(params);
 }
