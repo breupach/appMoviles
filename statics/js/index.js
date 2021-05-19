@@ -16,6 +16,12 @@ function borrarProductosVista() {
 	document.getElementById("section-product").innerHTML = "";
 }
 
+function cargarAlHistorial(producto) {
+	let productosHistorial = JSON.parse(localStorage.getItem("historial") || "[]");
+	productosHistorial.push(producto);
+	localStorage.setItem("historial", JSON.stringify(productosHistorial));
+}
+
 function getCustomParams(params) {
 	borrarProductosVista();
 	let customUrl = "";
@@ -149,6 +155,9 @@ function cargarProductoDetalle() {
 	const producto = JSON.parse(localStorage.getItem("producto"));
 	let categorias = [];
 	producto.categories.forEach((category) => categorias.push(category.name));
+
+	cargarAlHistorial(producto);
+
 	categorias = categorias.join(" - ");
 	$(`<div class="container-photo-book align-center">
     <img class="photo-book" src=${producto.cover} alt="producto">
@@ -168,8 +177,19 @@ function cargarProductoDetalle() {
 
 function cargarProductoCompartir() {
 	const producto = JSON.parse(localStorage.getItem("producto"));
+	cargarAlHistorial(producto);
 	document.getElementById("titulo").value = producto.title;
 	document.getElementById("autor").value = producto.author;
+}
+
+function cargarProductosHistorial() {
+	const productos = JSON.parse(localStorage.getItem("historial") || "[]");
+
+	if (productos.length > 0) {
+		productos.forEach((product) => {
+			crearProduct(product);
+		});
+	}
 }
 
 function crearOption(category, idSelect) {

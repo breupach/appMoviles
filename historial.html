@@ -24,9 +24,9 @@
             </div>
         </nav>
 
-        <section class="container-contact align-center">
-            <h2 class="title-form text-white right">Historial</h2>
-        </section>
+		<main class="flex-column">
+            <div class="section-book flex-column align-center" id="section-product"></div>
+        </main>
 
         <footer class="footer view-padding flex-column text-white align-center">
             <div class="font-roboto align-center">Aplicaciones Móviles: Trabajo Integrador</div>
@@ -45,5 +45,13 @@
                 </a>
             </div>
         </footer>
+
+		<script src="./statics/js/jquery-3.6.0.min.js"></script>
+		<script src="./statics/js/index.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				cargarProductosHistorial();
+			});
+		</script>
   </body>
 </html>
