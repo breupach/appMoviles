@@ -439,6 +439,7 @@ form{
     .photo-rabit{
         height: 100%;
         justify-content: center;
+        display: block;
     }
 
     .footer{
