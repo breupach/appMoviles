@@ -57,7 +57,7 @@ function cargarPaginacion(totalPaginas, page) {
 		liTag += `<li class="btn-pag prev" onclick="cargarPaginacion(totalPaginas, ${
 			page - 1
 		});getWithPagination(${page - 1})">
-					<span><i class="fas fa-angle-left"></i> Anterior</span>
+					<span><i class="fas fa-angle-left"></i></span>
 				</li>`;
 	}
 
@@ -106,7 +106,7 @@ function cargarPaginacion(totalPaginas, page) {
 		liTag += `<li class="btn-pag next" onclick="cargarPaginacion(totalPaginas, ${
 			page + 1
 		});getWithPagination(${page + 1})">
-                    <span>Siguiente <i class="fas fa-angle-right"></i></span>
+                    <span><i class="fas fa-angle-right"></i></span>
                 </li>`;
 	}
 	ulTag.innerHTML = liTag;
