@@ -41,16 +41,15 @@
                     <h2 class="title-form text-white right">Datos de artículo</h2>
                     <div class="detail-share flex-row space-between">
                       <label>Título:</label>
-                      <input class="input-share" type="text" name="titulo" disabled/>
+                      <input class="input-share" type="text" name="titulo" id="titulo" value="" disabled/>
                     </div>
                     <div class="detail-share flex-row space-between">
                       <label>Autor:</label>
-                      <input class="input-share" type="text" name="autor" disabled/>
+                      <input class="input-share" type="text" name="autor" id="autor" value="" disabled/>
                     </div>
                 </div>
             </div>
             <div class="container-form flex-column align-center">
-                <!-- <label>Mensaje:</label> -->
                 <textarea class="msj" placeholder="Escriba su mensaje"></textarea>
             </div>
             <div class="container-btn flex-row">
@@ -79,5 +78,12 @@
                 </a>
             </div>
         </footer>
+        <script src="./statics/js/jquery-3.6.0.min.js"></script>
+        <script src="./statics/js/index.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                cargarProductoCompartir();
+            })
+        </script>
   </body>
 </html>

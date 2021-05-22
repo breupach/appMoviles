@@ -27,13 +27,19 @@
         <section class="container-contact flex-column align-center">
             <div class="contact space-around flex-column">
                 <h3>Contacto</h3>
-                <h4><a class="link-contact" href="https://breupach.github.io/appMoviles/">Pagina web</a></h4>
+                <p>Web: <a class="link-contact" href="https://breupach.github.io/appMoviles/">https://breupach.github.io/appMoviles/</a></p>
                 <p>Teléfono: 0221 423-3931</p>
                 <p>Dirección: Calle 14, B1900 La Plata, Buenos Aires</p>
                 <p>Contacto: Alberto Paparelli - Brian Reupach</p>
             </div>
-           <div class="map"><iframe class="iframe-map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13085.388732687137!2d-57.9562555!3d-34.9228288!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8e5a62b28764b5ef!2sCatedral%20de%20La%20Plata!5e0!3m2!1sen!2sar!4v1620597154751!5m2!1sen!2sar" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
-        </section>
+<!--            <div class="map"><iframe class="iframe-map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13085.388732687137!2d-57.9562555!3d-34.9228288!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8e5a62b28764b5ef!2sCatedral%20de%20La%20Plata!5e0!3m2!1sen!2sar!4v1620597154751!5m2!1sen!2sar" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+ -->        
+                <div id="map" class="map"></div>
+
+
+
+
+            </section>
 
         <footer class="footer view-padding flex-column text-white align-center">
             <div class="font-roboto align-center">Aplicaciones Móviles: Trabajo Integrador</div>
@@ -52,5 +58,7 @@
                 </a>
             </div>
         </footer>
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALpYIi6jqPmzPDHzPgvDjtRFuBwKPev0Q&callback=initMap"></script>
+        <script src="./statics/js/mapa.js"></script>
   </body>
 </html>
