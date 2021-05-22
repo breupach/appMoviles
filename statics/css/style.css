@@ -13,6 +13,7 @@ a:active {
 
 .font-roboto {
 	font-family: "Roboto", sans-serif;
+	font-weight: 100;
 }
 
 .flex-row {
@@ -31,6 +32,10 @@ a:active {
 .title-form,
 .send {
 	background: rgb(3, 45, 84);
+}
+
+.btn-del{
+	background: rgb(202, 42, 42);
 }
 
 .header,
@@ -154,7 +159,7 @@ textarea:focus-visible {
 
 .container-contact {
 	justify-content: center;
-	height: 600px;
+	height: 680px;
 }
 
 .contact {
@@ -268,7 +273,8 @@ textarea:focus-visible {
 	border-radius: 0 30px 30px 0;
 }
 
-.btn-add {
+.btn-add,
+.btn-del {
 	width: 100%;
 	height: 43px;
 	border: none;
@@ -555,6 +561,10 @@ paginacion
 
 	.container-shopping-cart {
 		flex: 0.5;
+	}
+
+	.flex-1{
+		flex: 1;
 	}
 
 	.search {

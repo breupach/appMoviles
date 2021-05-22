@@ -22,6 +22,13 @@
                 <h2 class="font-roboto secundary-text text-white"><a class="link-nav text-white" href="./contacto.html">Contacto</a></h2>
                 <h2 class="font-roboto secundary-text text-white"><a class="link-nav text-white" href="./historial.html">Historial</a></h2>
             </div>
+            <div class="flex-row container-shopping-cart flex-1">
+                <i class="fas fa-shopping-cart text-white align-center"></i>
+                <div class="flex-column text-shopping-cart text-white">
+                    <div>Cantidad: <span id="total_items">0</span></div>
+                    <div>$ <span id="total_price">0</span></div>
+                </div>
+            </div>
         </nav>
 
 		<main class="flex-column">
@@ -48,9 +55,11 @@
 
 		<script src="./statics/js/jquery-3.6.0.min.js"></script>
 		<script src="./statics/js/index.js"></script>
+        <script src="./statics/js/carrito.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function () {
 				cargarProductosHistorial();
+                UpdateCarrito()
 			});
 		</script>
   </body>
