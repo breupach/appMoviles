@@ -129,14 +129,14 @@ function getWithPagination(numPagina) {
 
 function crearProduct(product) {
 	let tituloRecortado = product.title.slice(0, 74);
-	let carrito = JSON.parse(localStorage.getItem("carrito"))
+	let carrito = JSON.parse(localStorage.getItem("carrito"));
 
-	if (product.ID in carrito){
-		btn = `<button class='btn-del font-roboto text-white' data-id='${product.ID}' data-price='${product.pages}'>Eliminardel carrito</button>`
-	}else{
-		btn = `<button class='btn-add font-roboto text-white' data-id='${product.ID}' data-price='${product.pages}'>Agregar al carrito</button>`
+	if (product.ID in carrito) {
+		btn = `<button class='btn-del font-roboto text-white' data-id='${product.ID}' data-price='${product.pages}'>Eliminardel carrito</button>`;
+	} else {
+		btn = `<button class='btn-add font-roboto text-white' data-id='${product.ID}' data-price='${product.pages}'>Agregar al carrito</button>`;
 	}
-	
+
 	$(`<div class='container-product flex-column space-between box-shadow align-center'>
   <div class='container-image-product'>
       <img class='product' src='${product.thumbnail}' alt='producto'>
@@ -161,20 +161,24 @@ function saltoPagina(destino, idProducto) {
 	let productos = JSON.parse(localStorage.getItem("productos"));
 	const producto = productos.filter((p) => p.ID === idProducto)[0];
 	localStorage.setItem("producto", JSON.stringify(producto));
-	location.href = location.origin + destino;
+	if (location.origin.startsWith("http")) {
+		location.href = location.origin + "/appMoviles" + destino;
+	} else {
+		location.href = location.origin + destino;
+	}
 }
 
 function cargarProductoDetalle() {
-	let carrito = JSON.parse(localStorage.getItem("carrito"))
-	
+	let carrito = JSON.parse(localStorage.getItem("carrito"));
+
 	const producto = JSON.parse(localStorage.getItem("producto"));
 	let categorias = [];
 	producto.categories.forEach((category) => categorias.push(category.name));
 
-	if (producto.ID in carrito){
-		btn = `<button class='btn-del font-roboto text-white' data-id='${producto.ID}' data-price='${producto.pages}'>Eliminardel carrito</button>`
-	}else{
-		btn = `<button class='btn-add font-roboto text-white' data-id='${producto.ID}' data-price='${producto.pages}'>Agregar al carrito</button>`
+	if (producto.ID in carrito) {
+		btn = `<button class='btn-del font-roboto text-white' data-id='${producto.ID}' data-price='${producto.pages}'>Eliminardel carrito</button>`;
+	} else {
+		btn = `<button class='btn-add font-roboto text-white' data-id='${producto.ID}' data-price='${producto.pages}'>Agregar al carrito</button>`;
 	}
 	cargarAlHistorial(producto);
 
@@ -193,7 +197,7 @@ function cargarProductoDetalle() {
     <p class="info-product font-roboto text-blue">${producto.content}</p>
     ${btn}
   </div>`).appendTo(document.getElementById("section-product"));
-  createEvents();
+	createEvents();
 }
 
 function cargarProductoCompartir() {
