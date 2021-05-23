@@ -129,7 +129,14 @@ function getWithPagination(numPagina) {
 
 function crearProduct(product) {
 	let tituloRecortado = product.title.slice(0, 74);
+	let carrito = JSON.parse(localStorage.getItem("carrito"))
 
+	if (product.ID in carrito){
+		btn = `<button class='btn-del font-roboto text-white' data-id='${product.ID}' data-price='${product.pages}'>Eliminardel carrito</button>`
+	}else{
+		btn = `<button class='btn-add font-roboto text-white' data-id='${product.ID}' data-price='${product.pages}'>Agregar al carrito</button>`
+	}
+	
 	$(`<div class='container-product flex-column space-between box-shadow align-center'>
   <div class='container-image-product'>
       <img class='product' src='${product.thumbnail}' alt='producto'>
@@ -144,8 +151,10 @@ function crearProduct(product) {
       <span>|</span>
       <h2 class='container-view'><button class='view align-center' onclick='saltoPagina("/product.html","${product.ID}")'>Ver +</button></h2>
   </div>
-  <button class='btn-add font-roboto text-white'>Agregar al carrito</button>
-</div>`).appendTo(document.getElementById("section-product"));
+	${btn}
+	</div>`).appendTo(document.getElementById("section-product"));
+	// Bindeo evento del click agregar a carrito
+	createEvents();
 }
 
 function saltoPagina(destino, idProducto) {
@@ -156,10 +165,17 @@ function saltoPagina(destino, idProducto) {
 }
 
 function cargarProductoDetalle() {
+	let carrito = JSON.parse(localStorage.getItem("carrito"))
+	
 	const producto = JSON.parse(localStorage.getItem("producto"));
 	let categorias = [];
 	producto.categories.forEach((category) => categorias.push(category.name));
 
+	if (producto.ID in carrito){
+		btn = `<button class='btn-del font-roboto text-white' data-id='${producto.ID}' data-price='${producto.pages}'>Eliminardel carrito</button>`
+	}else{
+		btn = `<button class='btn-add font-roboto text-white' data-id='${producto.ID}' data-price='${producto.pages}'>Agregar al carrito</button>`
+	}
 	cargarAlHistorial(producto);
 
 	categorias = categorias.join(" - ");
@@ -175,8 +191,9 @@ function cargarProductoDetalle() {
     <h2 class="info-product font-roboto text-blue">Categoría: ${categorias}</h2>
     <h2 class="info-product font-roboto text-blue">Reseña del libro:</h2>
     <p class="info-product font-roboto text-blue">${producto.content}</p>
-    <button class="btn-add font-roboto text-white">Agregar al carrito</button>
+    ${btn}
   </div>`).appendTo(document.getElementById("section-product"));
+  createEvents();
 }
 
 function cargarProductoCompartir() {
