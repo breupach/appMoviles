@@ -161,7 +161,7 @@ function saltoPagina(destino, idProducto) {
 	let productos = JSON.parse(localStorage.getItem("productos"));
 	const producto = productos.filter((p) => p.ID === idProducto)[0];
 	localStorage.setItem("producto", JSON.stringify(producto));
-	if (location.origin.startsWith("http")) {
+	if (location.origin.startsWith("https")) {
 		location.href = location.origin + "/appMoviles" + destino;
 	} else {
 		location.href = location.origin + destino;
