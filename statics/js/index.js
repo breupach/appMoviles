@@ -147,9 +147,9 @@ function crearProduct(product) {
     <h2 class='detail-product font-roboto text-blue'>Precio: $ ${product.pages}</h2>
   </div>
   <div class='view-more flex-row space-around align-center'>
-      <h2 class='more-info'><button class='share align-center text-blue' onclick='saltoPagina("/share.html","${product.ID}")'>Compartir</button></h2>
+      <h2 class='more-info'><button class='share align-center text-blue' onclick='cargarProducto("/share.html","${product.ID}")'>Compartir</button></h2>
       <span>|</span>
-      <h2 class='container-view'><button class='view align-center' onclick='saltoPagina("/product.html","${product.ID}")'>Ver +</button></h2>
+      <h2 class='container-view'><button class='view align-center' onclick='cargarProducto("/product.html","${product.ID}")'>Ver +</button></h2>
   </div>
 	${btn}
 	</div>`).appendTo(document.getElementById("section-product"));
@@ -157,15 +157,37 @@ function crearProduct(product) {
 	createEvents();
 }
 
-function saltoPagina(destino, idProducto) {
+async function buscarLibroPorId(id) {
+	return await $.getJSON(`${URL}/?id=${id}`);
+}
+
+function cargarProducto(destino, idProducto) {
 	let productos = JSON.parse(localStorage.getItem("productos"));
-	const producto = productos.filter((p) => p.ID === idProducto)[0];
-	localStorage.setItem("producto", JSON.stringify(producto));
+	let producto = JSON.parse(localStorage.getItem("producto"));
+	if (!(producto.ID === idProducto)) {
+		producto = productos.filter((p) => p.ID === idProducto)[0];
+	}
+	if (producto) {
+		localStorage.setItem("producto", JSON.stringify(producto));
+		saltoPagina(destino);
+		return;
+	} else {
+		buscarLibroPorId(idProducto).then((restuls) => {
+			localStorage.setItem("producto", JSON.stringify(restuls[0]));
+			saltoPagina(destino);
+			return;
+		});
+	}
+	return;
+}
+
+function saltoPagina(destino) {
 	if (location.origin.startsWith("https")) {
 		location.href = location.origin + "/appMoviles" + destino;
 	} else {
 		location.href = location.origin + destino;
 	}
+	return;
 }
 
 function cargarProductoDetalle() {
