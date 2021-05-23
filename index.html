@@ -42,12 +42,7 @@
 					<option value="NINGUNO">Buscar por categoría</option>
 				</select>
 
-				<select
-					class="search"
-					id="search__subcategorias"
-					name="subcategory_id"
-					hidden
-				>
+				<select class="search" id="search__subcategorias" name="subcategory_id" hidden>
 					<option value="NINGUNO">Selecciona una sub categoría</option>
 				</select>
 
@@ -59,7 +54,9 @@
 				</select> -->
 
 				<button class="btn-index text-blue" type="submit">Buscar</button>
-				<button class="btn-index text-blue" type="button">Limpiar</button>
+				<button class="btn-index text-blue" type="button" onclick="buscadorLimpiar()">
+					Limpiar
+				</button>
 			</form>
 
 			<div class="flex-row container-shopping-cart">
