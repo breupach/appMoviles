@@ -18,8 +18,12 @@ function borrarProductosVista() {
 
 function cargarAlHistorial(producto) {
 	let productosHistorial = JSON.parse(localStorage.getItem("historial") || "[]");
-	productosHistorial.push(producto);
-	localStorage.setItem("historial", JSON.stringify(productosHistorial));
+
+	const exist = productosHistorial.some((p) => p.ID === producto.ID);
+	if (!exist) {
+		productosHistorial.push(producto);
+		localStorage.setItem("historial", JSON.stringify(productosHistorial));
+	}
 }
 
 function getCustomParams(params) {
@@ -260,4 +264,53 @@ function buscar(event, bindForm) {
 		];
 	}
 	getCustomParams(params);
+}
+
+function buscadorLimpiar() {
+	document.getElementById("title").value = "";
+	document.getElementById("author").value = "";
+	document.getElementById("search__categorias").value = "NINGUNO";
+	document.getElementById("search__subcategorias").value = "NINGUNO";
+	document.getElementById("search__subcategorias").hidden = true;
+}
+
+function compartirCancelar() {
+	window.history.back();
+}
+
+function emailForm(event, bindForm) {
+	event.preventDefault();
+
+	if (!bindForm.receptor.value || !bindForm.emisor.value) {
+		Swal.fire({
+			title: "Datos del formulario",
+			icon: "error",
+			html: `Emisor y Receptor son campos obligatorios.`,
+		});
+		return;
+	}
+
+	if (!validarEmail(bindForm.receptor.value) || !validarEmail(bindForm.emisor.value)) {
+		Swal.fire({
+			title: "Datos del formulario",
+			icon: "error",
+			html: `Emisor o Receptor son inválidos.`,
+		});
+		return;
+	}
+
+	let body_message = `Hola, te comparto este libro que te puede interesar.%0D%0ATítulo: ${bindForm.titulo.value}%0D%0AAutor: ${bindForm.autor.value}.`;
+	if (bindForm.message.value) {
+		body_message += `%0D%0A%0D%0ALa persona que te envía este mail además te quiere dar este mensaje:%0D%0A${bindForm.message.value}`;
+	}
+	encodeURIComponent(body_message);
+
+	const mailto_link = `mailto:${bindForm.receptor.value}?subject=Mail de - ${bindForm.emisor.value} - Web Librería, libro compartido.&body=${body_message}`;
+	window.open(mailto_link);
+}
+
+function validarEmail(input) {
+	const re =
+		/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(input);
 }

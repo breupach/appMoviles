@@ -24,17 +24,17 @@
             </div>
         </nav>
 
-        <form class="form flex-column align-center">
+        <form class="form flex-column align-center" onsubmit="emailForm(event, this);">
             <div class="container-form flex-column align-center">
                 <div class="container-share flex-column border-right">
                     <h2 class="title-form text-white left">Datos de envio</h2>
                     <div class="detail-share flex-row space-between">
                         <label>Emisor:</label>
-                        <input class="input-share" type="email" name="emisor" placeholder="Ingrese su e-mail"/>
+                        <input class="input-share" type="text" name="emisor" placeholder="Ingrese su e-mail"/>
                     </div>
                     <div class="detail-share flex-row space-between">
                         <label>Receptor:</label>
-                        <input class="input-share" type="email" name="receptor" placeholder="Ingrese el e-mail destino"/>
+                        <input class="input-share" type="text" name="receptor" placeholder="Ingrese el e-mail destino"/>
                     </div>
                 </div>
                 <div class="container-share flex-column border-left">
@@ -50,14 +50,14 @@
                 </div>
             </div>
             <div class="container-form flex-column align-center">
-                <textarea class="msj" placeholder="Escriba su mensaje"></textarea>
+                <textarea class="msj" name="message" placeholder="Escriba su mensaje"></textarea>
             </div>
             <div class="container-btn flex-row">
-                <button class="btn text-white send box-shadow">Enviar</button>
+                <button class="btn text-white cancel box-shadow" type="button" onclick="compartirCancelar()">Cancelar</button>
                 <div class="justify-center">
                     <img class="photo-rabit" src="./statics/images/conejoPC.png" alt="conejo con PC">
                 </div>
-                <button class="btn text-white cancel box-shadow">Cancelar</button>
+                <button class="btn text-white send box-shadow" type="submit">Enviar</button>
             </div>
         </form>
 
@@ -79,6 +79,7 @@
             </div>
         </footer>
         <script src="./statics/js/jquery-3.6.0.min.js"></script>
+        <script src="./statics/js/sweetalert2-10.js"></script>
         <script src="./statics/js/index.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {

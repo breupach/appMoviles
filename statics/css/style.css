@@ -4,6 +4,11 @@
 	margin: 0;
 	padding: 0%;
 }
+
+button {
+	cursor: pointer;
+}
+
 a:link,
 a:visited,
 a:active {
@@ -110,12 +115,12 @@ a:active {
 	margin: 1% 0;
 }
 
-.btn-index{
+.btn-index {
 	border-radius: 5px;
-    background: white;
-    height: 30px;
+	background: white;
+	height: 30px;
 	width: 95%;
-    margin: 1% 0;
+	margin: 1% 0;
 }
 
 .container-shopping-cart {
@@ -258,7 +263,7 @@ textarea:focus-visible {
 	flex: 9;
 }
 
-.container-view:hover{
+.container-view:hover {
 	background: rgba(189, 188, 188, 0.763);
 	border-radius: 30px 0 0 30px;
 }
@@ -450,9 +455,9 @@ paginacion
 	margin: 0 3px;
 }
 
-/* .pagination ul li.btn-pag {
-	padding: 0 20px;
-} */
+.pagination ul li.btn-pag {
+	padding: 0 15px;
+}
 
 .pagination ul li.prev {
 	border-radius: 25px 5px 5px 25px;
@@ -503,12 +508,12 @@ paginacion
 		border-left: none;
 	}
 
-	.search{
+	.search {
 		width: 23%;
 		padding-left: 1%;
 	}
 
-	.btn-index{
+	.btn-index {
 		font-size: 10px;
 		width: 10%;
 		margin: 0;
@@ -524,7 +529,6 @@ paginacion
 	.container-contact,
 	.container-info-book {
 		flex-direction: row;
-
 	}
 
 	.publicity {
